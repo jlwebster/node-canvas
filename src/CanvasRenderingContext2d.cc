@@ -1679,6 +1679,7 @@ Context2d::SetFont(const Arguments &args) {
 	/* Init freetype */
 	FT_Library ft_library;
 	printf("init ft lib success? %d\n", FT_Init_FreeType(&ft_library));
+	printf("test me out %d\n", 1);
 
 	/* Load our fonts */
 	FT_Face ft_face;
