@@ -1703,6 +1703,15 @@ Context2d::SetFont(const Arguments &args) {
 	printf("ctx: %p\n", ctx);
 	
 	cairo_set_font_face(ctx, cairo_ft_face);
+	
+	// Size
+	  cairo_set_font_size(ctx, size);
+
+	  // // Style
+	  // cairo_font_slant_t s = CAIRO_FONT_SLANT_ITALIC;
+	  // 
+	  // // Weight
+	  // cairo_font_weight_t w = CAIRO_FONT_WEIGHT_BOLD;
   
   return Undefined();
 }
