@@ -1683,19 +1683,20 @@ Context2d::SetFont(const Arguments &args) {
 
 	/* Load our fonts */
 	FT_Face ft_face;
-	printf("first %d", 0);
-	FT_New_Face(ft_library, "/Users/jwebster/dev/typeshirt-canvas/fonts/tt0001m_.ttf", 0, &ft_face);
-	printf("test? %d", 1);
-	printf("success char size? %d", FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
-	printf("hi there %d", 2);
+	printf("first %d\n", 0);
+	printf("success load font: %d\n", FT_New_Face(ft_library, "/Users/jwebster/dev/typeshirt-canvas/fonts/tt0001m_.ttf", 0, &ft_face));
+	printf("test? %d\n", 1);
+	printf("success char size? %d\n", FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
+	printf("hi there %d\n", 2);
 
 	/* Get our cairo font structs */
 	cairo_font_face_t *cairo_ft_face = NULL;
-	printf("another test");
+	printf("another test\n");
 	cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
 	
-	printf("test here");
-	printf("cairo_ft_face: %p", cairo_ft_face);
+	printf("test here\n");
+	printf("cairo_ft_face: %p\n", cairo_ft_face);
+	printf("ctx: %p\n", ctx);
 	
 	cairo_set_font_face(ctx, cairo_ft_face);
   
