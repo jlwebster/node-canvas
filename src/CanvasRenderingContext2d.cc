@@ -9,6 +9,16 @@
 #include <string.h>
 #include <stdlib.h>
 #include "Canvas.h"
+
+// Freetype includes
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include <freetype/ftadvanc.h>
+#include <freetype/ftsnames.h>
+#include <freetype/tttables.h>
+#include <cairo/cairo.h>
+#include <cairo/cairo-ft.h>
+
 #include "Point.h"
 #include "Image.h"
 #include "ImageData.h"
@@ -1640,24 +1650,64 @@ Context2d::SetFont(const Arguments &args) {
   Context2d *context = ObjectWrap::Unwrap<Context2d>(args.This());
   cairo_t *ctx = context->context();
 
-  // Size
-  cairo_set_font_size(ctx, size);
+	bool use_freetype = false;
+#ifdef CAIRO_HAS_FT_FONT
+	if (!args[5]->IsNull())
+	{
+		String::AsciiValue file_path(args[5]);
+		
+		use_freetype = true;
 
-  // Style
-  cairo_font_slant_t s = CAIRO_FONT_SLANT_NORMAL;
-  if (0 == strcmp("italic", *style)) {
-    s = CAIRO_FONT_SLANT_ITALIC;
-  } else if (0 == strcmp("oblique", *style)) {
-    s = CAIRO_FONT_SLANT_OBLIQUE;
-  }
+		int device_hdpi = 100;
+		int device_vdpi = 100;
 
-  // Weight
-  cairo_font_weight_t w = CAIRO_FONT_WEIGHT_NORMAL;
-  if (0 == strcmp("bold", *weight)) {
-    w = CAIRO_FONT_WEIGHT_BOLD;
-  }
+		/* Init freetype */
+		FT_Library ft_library;
+		FT_Init_FreeType(&ft_library);
 
-  cairo_select_font_face(ctx, *family, s, w);
+		/* Load our fonts */
+		FT_Face ft_face;
+		FT_New_Face(ft_library, *file_path, 0, &ft_face);
+		FT_Set_Char_Size(ft_face, 0, size, device_hdpi, device_vdpi);
+
+		/* Get our cairo font structs */
+		cairo_font_face_t *cairo_ft_face = NULL;
+		cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
+
+		cairo_status_t status = cairo_font_face_status(cairo_ft_face);
+		if (status != CAIRO_STATUS_SUCCESS) {
+			cairo_font_face_destroy(cairo_ft_face);
+			FT_Done_Face(ft_face);
+	
+			// Fall back to using the non-freetype method of specifying 
+			// the font
+			use_freetype = false;
+		}
+	
+		cairo_set_font_face(ctx, cairo_ft_face);	
+	}
+#endif
+
+	if (!use_freetype) {
+	  // Style
+	  cairo_font_slant_t s = CAIRO_FONT_SLANT_NORMAL;
+	  if (0 == strcmp("italic", *style)) {
+	    s = CAIRO_FONT_SLANT_ITALIC;
+	  } else if (0 == strcmp("oblique", *style)) {
+	    s = CAIRO_FONT_SLANT_OBLIQUE;
+	  }
+
+	  // Weight
+	  cairo_font_weight_t w = CAIRO_FONT_WEIGHT_NORMAL;
+	  if (0 == strcmp("bold", *weight)) {
+	    w = CAIRO_FONT_WEIGHT_BOLD;
+	  }
+
+	  cairo_select_font_face(ctx, *family, s, w);
+	}
+	
+	// Size
+	cairo_set_font_size(ctx, size);
   
   return Undefined();
 }
