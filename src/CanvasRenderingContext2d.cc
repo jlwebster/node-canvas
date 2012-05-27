@@ -1684,7 +1684,7 @@ Context2d::SetFont(const Arguments &args) {
 	/* Load our fonts */
 	FT_Face ft_face;
 	printf("first %d\n", 0);
-	printf("success load font: %d\n", FT_New_Face(ft_library, "/Users/jwebster/dev/typeshirt-canvas/fonts/tt0003m_.ttf", 0, &ft_face));
+	printf("success load font: %d\n", FT_New_Face(ft_library, "fonts/tt0003m_.ttf", 0, &ft_face));
 	printf("test? %d\n", 1);
 	printf("success char size? %d\n", FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
 	printf("hi there %d\n", 2);
