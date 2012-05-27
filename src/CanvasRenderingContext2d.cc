@@ -11,6 +11,8 @@
 #include <assert.h>
 #include "Canvas.h"
 
+broken;
+
 // Freetype includes
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -1671,7 +1673,7 @@ Context2d::SetFont(const Arguments &args) {
 
   cairo_select_font_face(ctx, *family, s, w);
 	*/
-broken;
+	
 	double ptSize      = 25.0;
 	int    device_hdpi = 100;
 	int    device_vdpi = 100;
