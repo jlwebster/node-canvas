@@ -1651,6 +1651,7 @@ Context2d::SetFont(const Arguments &args) {
   Context2d *context = ObjectWrap::Unwrap<Context2d>(args.This());
   cairo_t *ctx = context->context();
 
+	/*
   // Size
   cairo_set_font_size(ctx, size);
 
@@ -1669,6 +1670,26 @@ Context2d::SetFont(const Arguments &args) {
   }
 
   cairo_select_font_face(ctx, *family, s, w);
+	*/
+	
+	double ptSize      = 100.0;
+	int    device_hdpi = 100;
+	int    device_vdpi = 100;
+
+	/* Init freetype */
+	FT_Library ft_library;
+	assert(!FT_Init_FreeType(&ft_library));
+
+	/* Load our fonts */
+	FT_Face ft_face;
+	assert(!FT_New_Face(ft_library, "fonts/Swis721_Md_BT.ttf", 0, &ft_face));
+	assert(!FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
+
+	/* Get our cairo font structs */
+	cairo_font_face_t *cairo_ft_face;
+	cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
+	
+	cairo_set_font_face(ctx, cairo_ft_face);
   
   return Undefined();
 }
