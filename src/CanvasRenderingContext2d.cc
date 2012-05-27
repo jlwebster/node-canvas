@@ -1682,7 +1682,7 @@ Context2d::SetFont(const Arguments &args) {
 
 	/* Load our fonts */
 	FT_Face ft_face;
-	assert(!FT_New_Face(ft_library, "fonts/Swis721_Md_BT.ttf", 0, &ft_face));
+	assert(!FT_New_Face(ft_library, "fonts/tt0001m_.ttf", 0, &ft_face));
 	assert(!FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
 
 	/* Get our cairo font structs */
