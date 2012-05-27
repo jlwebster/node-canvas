@@ -1687,8 +1687,10 @@ Context2d::SetFont(const Arguments &args) {
 
 	/* Get our cairo font structs */
 	cairo_font_face_t *cairo_ft_face = NULL;
+	printf("another test");
 	cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
 	
+	printf("test here");
 	printf("cairo_ft_face: %p", cairo_ft_face);
 	
 	cairo_set_font_face(ctx, cairo_ft_face);
