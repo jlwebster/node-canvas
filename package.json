@@ -3,8 +3,8 @@
  , "version":  "0.12.0"
  , "author": "TJ Holowaychuk <tj@learnboost.com>"
  , "keywords": ["canvas", "graphic", "graphics", "pixman", "cairo", "image", "images", "pdf"]
- , "homepage": "https://github.com/learnboost/node-canvas"
- , "repository": "git://github.com/learnboost/node-canvas"
+ , "homepage": "https://github.com/jlwebster/node-canvas.git"
+ , "repository": "git://github.com/jlwebster/node-canvas"
  , "scripts": {
    "preinstall": "node-waf configure build"
  }

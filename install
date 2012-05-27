@@ -3,6 +3,7 @@
 PKG_CONFIG="http://pkgconfig.freedesktop.org/releases/pkg-config-0.23.tar.gz"
 PIXMAN="http://www.cairographics.org/releases/pixman-0.20.2.tar.gz"
 CAIRO="http://cairographics.org/releases/cairo-1.10.2.tar.gz"
+FREETYPE="http://download.savannah.gnu.org/releases/freetype/freetype-2.4.9.tar.gz"
 LIBPNG="ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.2.40.tar.gz"
 PREFIX=${1-/usr/local}
 
@@ -45,4 +46,5 @@ require tar
 test `which pkg-config` || fetch $PKG_CONFIG
 require 'pkg-config'
 fetch $PIXMAN
+fetch $FREETYPE
 fetch $CAIRO
