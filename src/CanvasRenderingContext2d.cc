@@ -10,6 +10,16 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "Canvas.h"
+
+// Freetype includes
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include <freetype/ftadvanc.h>
+#include <freetype/ftsnames.h>
+#include <freetype/tttables.h>
+#include <cairo/cairo.h>
+#include <cairo/cairo-ft.h>
+
 #include "Point.h"
 #include "Image.h"
 #include "ImageData.h"
