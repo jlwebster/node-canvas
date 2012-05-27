@@ -1696,7 +1696,7 @@ Context2d::SetFont(const Arguments &args) {
 	
 	cairo_status_t *status = cairo_font_face_status(cairo_ft_face);
 	
-	printr("font face status: %s\n", cairo_status_to_string(status));
+	printf("font face status: %s\n", cairo_status_to_string(status));
 	
 	printf("test here\n");
 	printf("cairo_ft_face: %p\n", cairo_ft_face);
