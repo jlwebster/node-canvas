@@ -1682,7 +1682,7 @@ Context2d::SetFont(const Arguments &args) {
 
 	/* Load our fonts */
 	FT_Face ft_face;
-	cout << FT_New_Face(ft_library, "/Users/jwebster/dev/typeshirt-canvas/fonts/tt0001m_.ttf", 0, &ft_face);
+	printf("success? %d\n", FT_New_Face(ft_library, "/Users/jwebster/dev/typeshirt-canvas/fonts/tt0001m_.ttf", 0, &ft_face));
 	FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi );
 
 	/* Get our cairo font structs */
