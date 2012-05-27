@@ -11,8 +11,6 @@
 #include <assert.h>
 #include "Canvas.h"
 
-broken;
-
 // Freetype includes
 #include <ft2build.h>
 #include FT_FREETYPE_H
