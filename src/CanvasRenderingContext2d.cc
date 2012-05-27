@@ -9,7 +9,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-something broken;
 #include "Canvas.h"
 #include "Point.h"
 #include "Image.h"
