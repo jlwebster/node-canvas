@@ -8,7 +8,6 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include <assert.h>
 #include "Canvas.h"
 
 // Freetype includes
@@ -1678,12 +1677,12 @@ Context2d::SetFont(const Arguments &args) {
 
 	/* Init freetype */
 	FT_Library ft_library;
-	assert(!FT_Init_FreeType(&ft_library));
+	FT_Init_FreeType(&ft_library);
 
 	/* Load our fonts */
 	FT_Face ft_face;
-	assert(!FT_New_Face(ft_library, "fonts/tt0001m_.ttf", 0, &ft_face));
-	assert(!FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi ));
+	FT_New_Face(ft_library, "fonts/tt0001m_.ttf", 0, &ft_face);
+	FT_Set_Char_Size(ft_face, 0, ptSize, device_hdpi, device_vdpi );
 
 	/* Get our cairo font structs */
 	cairo_font_face_t *cairo_ft_face;
